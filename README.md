@@ -1,8 +1,59 @@
 # Monitoring and Alerting For Multi-cloud Environments
 
-To begin with, we will create a dedicated Linux user or system account for Prometheus. This practice provides two significant benefits:
- 1- It is a security measure that limits the impact of any security incidents associated with the service.
- 2- It simplifies system administration by providing better organization and tracking of resources.
+## Install Prometheus
+
+ To begin with, we will create a dedicated Linux user or system account for Prometheus. This practice provides two significant benefits:
+  * It is a security measure that limits the impact of any security incidents associated with the service.
+  * It simplifies system administration by providing better organization and tracking of resources.
+
+sudo useradd \
+    --system \
+    --no-create-home \
+    --shell /bin/false prometheus
+
+We can verify and download the latest version of Prometheus from the official download page "https://prometheus.io/download/"
+
+Use the curl or wget command to download Prometheus
+
+"wget https://github.com/prometheus/prometheus/releases/download/v2.32.1/prometheus-2.32.1.linux-amd64.tar.gz"
+
+Next, we should extract all of the Prometheus files from the archive.
+
+"tar -xvf prometheus-2.32.1.linux-amd64.tar.gz"
+
+
+Usually, we would have a disk mounted to the data directory. We will create a directory named /data. Additionally, we need to create a folder for storing Prometheus configuration files.
+
+"sudo mkdir -p /data /etc/prometheus"
+
+Let's change the directory to Prometheus and move some files.
+
+"cd prometheus-2.32.1.linux-amd64"
+
+We should move the Prometheus binary and promtool to the /usr/local/bin/ directory. promtool is used for validating configuration files and Prometheus rules.
+
+"sudo mv prometheus promtool /usr/local/bin/"
+
+Finally, we need to move the sample Prometheus configuration file to the directory we created earlier for Prometheus configuration files.
+
+"sudo mv prometheus.yml /etc/prometheus/prometheus.yml"
+
+To ensure proper permissions, it is important to set the correct ownership for both the /etc/prometheus/ directory and the data directory.
+
+sudo chown -R prometheus:prometheus /etc/prometheus/ /data/
+
+To clean up after installation, you can delete the Prometheus archive and folder using the "rm" command.
+
+To ensure that the Prometheus binary is executable, execute the following command:
+
+prometheus --version
+
+
+
+
+
+
+
 ## Features
 
 
@@ -17,10 +68,7 @@ To create a system user or system account, run the following command:
 
 
 ## Metrics
-
-| Metrics                                  | Description                                                                     | Panels Number |
-|------------------------------------------|-------------------------------------------------------------------------------------------------|
-           
+   
 
 ### Metric name and help template system
 

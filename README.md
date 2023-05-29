@@ -119,6 +119,7 @@ This step requires configuring security group settings for the virtual machine. 
 Step 9:
 Reviews and referrals
 Review all the configuration details you specified so far. If everything is correct, click the Start button to start the EC2 instance creation process. AWS will prompt you to select or create an SSH key pair to use for secure remote access to your virtual machine.  
+
 Step 10:
 Access and manage virtual machines
 Once the EC2 instance creation process is complete, it can be accessed and managed through the AWS Management Console. Find your newly created instance in the EC2 dashboard and remotely access the virtual machine using the specified public IP address or DNS name. 

@@ -1,5 +1,9 @@
 # Monitoring and Alerting For Multi-cloud Environments
 
+## Architecture
+This diagram illustrates the architecture of Prometheus and some of its ecosystem components:
+
+
 ## Install Prometheus
 
  To begin with, we will create a dedicated Linux user or system account for Prometheus. This practice provides two significant benefits:

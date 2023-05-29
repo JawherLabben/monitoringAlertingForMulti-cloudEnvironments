@@ -3,6 +3,8 @@
 ## Architecture
 This diagram illustrates the architecture of Prometheus and some of its ecosystem components:
 
+![architecture](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/6bff693a-1acd-4891-be5a-64f6754ee1f8)
+
 
 ## Install Prometheus
 

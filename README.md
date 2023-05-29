@@ -1,9 +1,33 @@
 # Monitoring and Alerting For Multi-cloud Environments
 
-## Architecture
+### Features
+Prometheus's main features are:
+
+a multi-dimensional data model with time series data identified by metric name and key/value pairs
+PromQL, a flexible query language to leverage this dimensionality
+no reliance on distributed storage; single server nodes are autonomous
+time series collection happens via a pull model over HTTP
+pushing time series is supported via an intermediary gateway
+targets are discovered via service discovery or static configuration
+multiple modes of graphing and dashboarding support
+
+## Components
+The Prometheus ecosystem consists of multiple components, many of which are optional:
+
+the main Prometheus server which scrapes and stores time series data
+client libraries for instrumenting application code
+a push gateway for supporting short-lived jobs
+special-purpose exporters for services like HAProxy, StatsD, Graphite, etc.
+an alertmanager to handle alerts
+various support tools
+Most Prometheus components are written in Go, making them easy to build and deploy as static binaries.
+
+## Architecture of Prometheus
 This diagram illustrates the architecture of Prometheus and some of its ecosystem components:
 
 ![architecture](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/6bff693a-1acd-4891-be5a-64f6754ee1f8)
+
+Prometheus scrapes metrics from instrumented jobs, either directly or via an intermediary push gateway for short-lived jobs. It stores all scraped samples locally and runs rules over this data to either aggregate and record new time series from existing data or generate alerts. Grafana or other API consumers can be used to visualize the collected data.
 
 
 ## Install Prometheus
@@ -381,8 +405,13 @@ echo "jenkins_job_duration_seconds 15.98" | curl --data-binary @- http://localho
  
  
 ## Metrics
-   
+### What are metrics
+ 
+In layperson terms, metrics are numeric measurements. Time series means that changes are recorded over time. What users want to measure differs from application to application. For a web server it might be request times, for a database it might be number of active connections or number of active queries etc.
 
+Metrics play an important role in understanding why your application is working in a certain way. Let's assume you are running a web application and find that the application is slow. You will need some information to find out what is happening with your application. For example the application can become slow when the number of requests are high. If you have the request count metric you can spot the reason and increase the number of servers to handle the load.
+ 
+ 
 ### Metric name and help template system
 
 

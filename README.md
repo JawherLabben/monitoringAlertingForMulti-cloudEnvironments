@@ -786,4 +786,5 @@ Following templates are available:
 | ` Node Exporter`                         | ` (Established, waiting, current, etc) network connections on the machine  `    |   
 
 
+![2023-05-03_163336](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/b81f5279-7182-4ac5-96b8-68aea5a3dbe7)
 

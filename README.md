@@ -2,6 +2,7 @@
 
 ### The project's goal
 
+The project is to implement a multi-cloud monitoring solution to monitor and manage cloud resources on multiple platforms such as Azure, AWS, etc. A centralized solution will collect and analyze monitoring data, issue personalized alerts and view metrics in real time. The goal is to improve visibility, control, and efficiency in managing cloud resources, while optimizing performance and utilizing costs.
 
 ### Features
 Prometheus's main features are:

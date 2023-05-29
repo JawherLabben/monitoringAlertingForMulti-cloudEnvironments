@@ -442,7 +442,6 @@ sudo systemctl start pushgateway
  sudo systemctl status pushgateway
 ```
  
- ![statusPushgateway](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/f82d6496-8f11-416b-bc5a-f9c8285782c1)
 
  
  Pushgateway can be reachible at http://<ip>:9091.

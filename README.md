@@ -410,7 +410,260 @@ echo "jenkins_job_duration_seconds 15.98" | curl --data-binary @- http://localho
 
  You can find this metric in Prometheus. Refresh the page and start typing jenkins_job_duration_seconds.
 
+## Install Alertmanager on Ubuntu 20.04
+
+ To send alerts, we're going to use Alertmanager. It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or in our case Slack. You can set up multiple Alertmanagers to achieve high availability. For this demo, I will install a single one.
+
+First, let's create a system user for Alertmanager.
  
+``` 
+ sudo useradd \
+    --system \
+    --no-create-home \
+    --shell /bin/false alertmanager
+```
+ 
+ 
+Then, download Alertmanager from the same downloads page.
+
+ ```
+wget https://github.com/prometheus/alertmanager/releases/download/v0.23.0/alertmanager-0.23.0.linux-amd64.tar.gz
+```
+ Extract Alertmanager binary.
+```
+tar -xvf alertmanager-0.23.0.linux-amd64.tar.gz
+```
+ 
+ For Alertmanager, we need storage. It is mandatory (it defaults to "data/") and is used to store Alertmanager's notification states and silences. Without this state (or if you wipe it), Alertmanager would not know across restarts what silences were created or what notifications were already sent.
+```
+ sudo mkdir -p /alertmanager-data /etc/alertmanager
+```
+Now, let's move Alermanager's binary to the local bin and copy sample config.
+
+```
+sudo mv alertmanager-0.23.0.linux-amd64/alertmanager /usr/local/bin/
+sudo mv alertmanager-0.23.0.linux-amd64/alertmanager.yml /etc/alertmanager/
+```
+ 
+ Remove downloaded archive and a folder.
+```
+
+rm -rf alertmanager*
+```
+
+Check if we can run Alertmanager.
+```
+alertmanager --version
+```
+
+You can also get help and all supported configuration options by running Alertmanager help.
+```
+alertmanager --help
+ 
+```
+
+ 
+Next is the systemd service definition.
+```
+sudo vim /etc/systemd/system/alertmanager.service
+```
+ alertmanager.service
+```
+[Unit]
+Description=Alertmanager
+Wants=network-online.target
+After=network-online.target
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=alertmanager
+Group=alertmanager
+Type=simple
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/local/bin/alertmanager \
+  --storage.path=/alertmanager-data \
+  --config.file=/etc/alertmanager/alertmanager.yml
+
+[Install]
+WantedBy=multi-user.target
+```
+ 
+Enable alertmanager.
+```
+sudo systemctl enable alertmanager
+```
+
+Start Alertmanager.
+```
+sudo systemctl start alertmanager
+```
+
+ Check the status.
+```
+sudo systemctl status alertmanager
+```
+
+ 
+Alertmanager will be exposed on port 9093 http://<ip>:9093.
+
+It's time to create a simple alert. In almost all Prometheus setups, you have an alert that is always active. It is used to validate the monitoring system itself. For example, it can be integrated with the deadmanssnitch service. If something goes wrong with the Prometheus or Alertmanager and, you will get an emergency notification that your monitoring system is down. It's a very useful service, especially in production environments.
+
+Let's create alert but without integration with DeadMansSnitch.
+```
+ sudo vim /etc/prometheus/dead-mans-snitch-rule.yml
+```
+ 
+dead-mans-snitch-rule.yml
+```
+
+---
+groups:
+- name: dead-mans-snitch
+  rules:
+  - alert: DeadMansSnitch
+    annotations:
+      message: This alert is integrated with DeadMansSnitch.
+    expr: vector(1)
+```
+
+You also need to update the Prometheus config to specify the location of Alertmanager and specify the path to the new rule.
+```
+sudo vim /etc/prometheus/prometheus.yml
+```
+ 
+prometheus.yml
+```
+...
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - localhost:9093
+rule_files:
+  - dead-mans-snitch-rule.yml
+ ```
+ It's always a good idea to check Prometheus config before restarting.
+
+ 
+promtool check config /etc/prometheus/prometheus.yml
+ ```
+sudo systemctl restart prometheus
+sudo systemctl status prometheus
+ ```
+
+ 
+## Alertmanager Slack Channel Integration
+ 
+ Alertmanager can be configured to send emails, can be integrated with PagerDuty and many other services. For this demo, I will integrate Alertmanager with Slack. We're going to create a slack channel where all the alerts will be sent.
+
+Let's create alerts Slack channel.
+
+Create a new Slack app from scratch. Give it a name Prometheus and select a workspace.
+You can modify the app from the basic information. Let's upload the Prometheus icon.
+Next, we need to enable incoming webhooks. Then add webhook to the workspace.
+The last thing, we need to copy Webhook URL and use it in Alertmanager config.
+Now, update alertmanager.yml config to include a new route to send alerts to the Slack
+ 
+  ```
+ sudo vim /etc/alertmanager/alertmanager.yml
+ ```
+
+ ```
+ ---
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: 'web.hook'
+  routes:
+  - receiver: slack-notifications
+    match:
+      severity: warning
+receivers:
+- name: 'web.hook'
+  webhook_configs:
+  - url: 'http://127.0.0.1:5001/'
+- name: slack-notifications
+  slack_configs:
+  - channel: "#alerts"
+    send_resolved: true
+    api_url: "https://hooks.slack.com/services/<id>"
+    title: "{{ .GroupLabels.alertname }}"
+    text: "{{ range .Alerts }}{{ .Annotations.message }}\n{{ end }}"
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
+```
+ 
+ 
+ Restart alertmanager.
+```
+sudo systemctl restart alertmanager
+sudo systemctl status alertmanager
+
+```
+
+ Create a new alert rule to test Slack integration.
+```
+sudo vim /etc/prometheus/batch-job-rules.yml
+```
+ 
+ 
+batch-job-rules.yml
+```
+
+---
+groups:
+- name: batch-job-rules
+  rules:
+  - alert: JenkinsJobExceededThreshold
+    annotations:
+      message: Jenkins job exceeded a threshold of 30 seconds.
+    expr: jenkins_job_duration_seconds{job="backup"} > 30
+    for: 1m
+    labels:
+      severity: warning
+```
+
+ 
+ Add a new rule to Prometheus.
+```
+ sudo vim /etc/prometheus/prometheus.yml
+```
+ 
+ 
+prometheus.yml
+```
+...
+rule_files:
+  - dead-mans-snitch-rule.yml
+  - batch-job-rules.yml
+ 
+ ```
+ 
+ Check the config and reload Prometheus.
+```
+promtool check config /etc/prometheus/prometheus.yml
+curl -X POST -u admin:devops123 http://localhost:9090/-/reload
+```
+ 
+ Trigger the alert by sending the new metric to Prometheus Pushgateway.
+```
+echo "jenkins_job_duration_seconds 31.87" | curl --data-binary @- http://localhost:9091/metrics/job/backup
+```
+ 
+In a minute or so, you should get a message in Slack.
+If we send a new metric with a duration of less than 30 seconds, Prometheus will resolve the alert
+```
+echo "jenkins_job_duration_seconds 11.87" | curl --data-binary @- http://localhost:9091/metrics/job/backup
+```
  
 ## Metrics
 ### What are metrics

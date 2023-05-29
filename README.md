@@ -1,5 +1,8 @@
 # Monitoring and Alerting For Multi-cloud Environments
 
+### The project's goal
+
+
 ### Features
 Prometheus's main features are:
 

@@ -734,6 +734,10 @@ If we send a new metric with a duration of less than 30 seconds, Prometheus will
 echo "jenkins_job_duration_seconds 11.87" | curl --data-binary @- http://localhost:9091/metrics/job/backup
 ```
  
+ 
+![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
+
+ 
 ## Metrics
 ### What are metrics
  

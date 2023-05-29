@@ -152,8 +152,6 @@ WantedBy=multi-user.target
 
 ```
 
-![node_exporter service](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/6c97f53e-0a7c-4bcc-a69b-8b38b0e401b5)
-
 
 Replace Prometheus user and group to node_exporter, and update ExecStart command.
 To automatically start the Node Exporter after reboot, enable the service
@@ -376,6 +374,9 @@ sudo systemctl start pushgateway
 ```
  sudo systemctl status pushgateway
 ```
+ 
+ ![statusPushgateway](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/f82d6496-8f11-416b-bc5a-f9c8285782c1)
+
  
  Pushgateway can be reachible at http://<ip>:9091.
 

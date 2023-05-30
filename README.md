@@ -58,13 +58,16 @@ Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
 * Create a virtual machine (EC2 instance) in the AWS cloud
 * Install Prometheus
 * Install Node Exporter
+
+![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
+
+
 * Install Grafana on Ubuntu 20.04
 * Configure a data source before importing a template in Grafana
 * Importing the template 
 * Install Pushgateway Prometheus on Ubuntu 20.04
 * Install Alertmanager on Ubuntu 20.04
 * Alertmanager Slack Channel Integration
-![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
  
  If you want to follow the step-by-step installation instructions, you can refer to the detailed guide provided in the 'Installation_Guide.md' file.
  

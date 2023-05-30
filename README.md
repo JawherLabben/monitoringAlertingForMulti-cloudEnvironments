@@ -54,7 +54,6 @@ Metrics play an important role in understanding why your application is working 
 Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
 
 ### Installation and Configuration
-
 * Create a virtual machine in the Azure cloud
 * Create a virtual machine (EC2 instance) in the AWS cloud
 * Install Prometheus
@@ -66,6 +65,8 @@ Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
 * Install Alertmanager on Ubuntu 20.04
 * Alertmanager Slack Channel Integration
 ![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
+ 
+ If you want to follow the step-by-step installation instructions, you can refer to the detailed guide provided in the 'Installation_Guide.md' file.
  
 ### Metric name and help template system
 

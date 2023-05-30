@@ -31,7 +31,9 @@ This diagram shows the architecture of Prometheus and some of its ecosystem comp
 
 Prometheus extracts metrics directly from instrumented jobs, or through intermediate push gateways for short-lived jobs. Store all collected samples locally and run rules on that data to aggregate and record new time series from existing data or generate alerts. You can visualize the collected data using Grafana or any other API consumer.
 
-## Create a virtual machine in the Azure cloud
+## Getting Started
+
+### Create a virtual machine in the Azure cloud
 
 Follow this step-by-step guide to create a virtual machine in the Azure cloud.
 
@@ -72,7 +74,7 @@ Review all the configuration details you specified so far. If everything is corr
 Access and manage virtual machines
 After completing the virtual machine creation process, you can access and manage your virtual machine from the Azure portal. In Virtual Machine Services, click the newly created virtual machine to view details, perform management tasks, and remotely access the virtual machine. 
 
-## Create a virtual machine (EC2 instance) in the AWS cloud
+### Create a virtual machine (EC2 instance) in the AWS cloud
 
 Follow the step-by-step guide below to create a virtual machine (EC2 instance) in the AWS cloud.
 
@@ -117,7 +119,7 @@ Review all the configuration details you specified so far. If everything is corr
 Access and manage virtual machines
 Once the EC2 instance creation process is complete, it can be accessed and managed through the AWS Management Console. Find your newly created instance in the EC2 dashboard and remotely access the virtual machine using the specified public IP address or DNS name. 
 
-## Install Prometheus
+### Install Prometheus
 
  To begin with, we will create a dedicated Linux user or system account for Prometheus. This practice provides two significant benefits:
   * It is a security measure that limits the impact of any security incidents associated with the service.
@@ -166,7 +168,7 @@ To ensure that the Prometheus binary is executable, execute the following comman
 prometheus --version
 ```
 
-## Install Node Exporter
+### Install Node Exporter
 
 Next, we're going to set up and configured Node Exporter to collect Linux system metrics like CPU load and disk I/O. Node Exporter will expose these as Prometheus-style metrics. Since the installation process is very similar, I'm not going to cover as deep as Prometheus.
 
@@ -286,7 +288,7 @@ curl -X POST http://localhost:9090/-/reload
 ```
 Check the targets section http://<ip>:9090/targets
 
- ## Install Grafana on Ubuntu 20.04
+ ### Install Grafana on Ubuntu 20.04
 
 To visualize metrics we can use Grafana. There are many different data sources that Grafana supports, one of them is Prometheus.
 First, let's make sure that all the dependencies are installed
@@ -365,7 +367,7 @@ Copy 1860 ID to Clipboard.
 Now, in Grafana, you can click Import and paste this ID. Then load the dashboard. Select Prometheus datasource and click import.
 You have all sorts of metrics here that come from node exporter
  
- ## Install Pushgateway Prometheus on Ubuntu 20.04
+ ### Install Pushgateway Prometheus on Ubuntu 20.04
  
  Next component that I want to install is Pushgateway. The Pushgateway is a service that allows you to push metrics from jobs that cannot be scrapped. For example, you can have Jenkins jobs or some kind of cron jobs. You can't scrape them since they are running for a limited time only.
 The installation process is very similar to Prometheus and Node exporter.
@@ -492,7 +494,7 @@ echo "jenkins_job_duration_seconds 15.98" | curl --data-binary @- http://localho
 
  You can find this metric in Prometheus. Refresh the page and start typing jenkins_job_duration_seconds.
 
-## Install Alertmanager on Ubuntu 20.04
+### Install Alertmanager on Ubuntu 20.04
 
  To send alerts, we're going to use Alertmanager. It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or in our case Slack. You can set up multiple Alertmanagers to achieve high availability. For this demo, I will install a single one.
 
@@ -637,7 +639,7 @@ sudo systemctl status prometheus
  ```
 
  
-## Alertmanager Slack Channel Integration
+### Alertmanager Slack Channel Integration
  
  Alertmanager can be configured to send emails, can be integrated with PagerDuty and many other services. For this demo, I will integrate Alertmanager with Slack. We're going to create a slack channel where all the alerts will be sent.
 
@@ -827,3 +829,6 @@ Help recommendation: `Azure metrics for {metric} with aggregation {aggregation} 
 
 ![2023-05-03_163336](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/b81f5279-7182-4ac5-96b8-68aea5a3dbe7)
 
+ 
+ ## Contributing
+ If you have ideas, suggestions, or bug reports, contributions are welcome at any time!

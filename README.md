@@ -2,9 +2,11 @@
 
 ### Description
 
-This project aims to implement a multi-cloud monitoring solution for monitoring and managing cloud resources across multiple platforms, such as Azure and AWS. A centralized solution will collect and analyze monitoring data, issue personalized alerts, and display real-time metrics. The goal is to enhance transparency, control, and efficiency in managing cloud resources, while optimizing performance and cost utilization. 
+This project aims to implement a multi-cloud monitoring solution for monitoring and managing cloud resources across multiple platforms, such as Azure and AWS. A centralized solution will collect and analyze monitoring data, issue personalized alerts, and display real-time metrics. The goal is to enhance transparency, control, and efficiency in managing cloud resources, while optimizing performance and cost utilization.
 
-This phase involves creating two virtual machines in the Azure cloud. The first machine will be utilized for monitoring other machines, while the other machine in the Azure and AWS clouds will serve as targets as part of a multi-cloud monitoring setup
+The monitoring solution leverages the Prometheus architecture, a powerful open-source monitoring and alerting toolkit. It follows a pull-based model where Prometheus scrapes metrics data from the monitored targets at regular intervals. With the integration of Alertmanager, it provides robust alerting capabilities, including the ability to send alerts to a Slack channel.
+
+In this phase of the project, we will create two virtual machines in the Azure cloud. The first machine will be utilized for monitoring other machines, while the other machine in the Azure and AWS clouds will serve as targets as part of a multi-cloud monitoring setup. The monitoring data collected from these targets will be analyzed and visualized using Grafana, allowing for real-time monitoring and efficient management of cloud resources.
 
 ### Features
 * Centralized monitoring of cloud resources across multiple platforms

@@ -1,39 +1,4 @@
-# Monitoring and Alerting For Multi-cloud Environments
-
-### Description
-
-This project aims to implement a multi-cloud monitoring solution for monitoring and managing cloud resources across multiple platforms, such as Azure and AWS. A centralized solution will collect and analyze monitoring data, issue personalized alerts, and display real-time metrics. The goal is to enhance transparency, control, and efficiency in managing cloud resources, while optimizing performance and cost utilization. 
-
-This phase involves creating two virtual machines in the Azure cloud. The first machine will be utilized for monitoring other machines, while the other machine in the Azure and AWS clouds will serve as targets as part of a multi-cloud monitoring setup
-
-### Features
-* Centralized monitoring of cloud resources across multiple platforms
-* Real-time metrics and personalized alerts
-* Cost optimization for efficient resource utilization
-* Support for Azure, AWS, and GCP cloud providers
-
-## Components
-The Prometheus ecosystem consists of several components, many of which are optional.
-
-
-Main Prometheus server to fetch and store time series data
-Client library for instrumenting application code
-A push gateway that supports short-lived jobs
-Professional exporter for services such as HAProxy, StatsD, Graphite.
-Alert manager for handling alerts
-Various support tools
-Most Prometheus components are written in Go, so they can be easily built and deployed as static binaries.
-
-## Prometheus Architecture
-This diagram shows the architecture of Prometheus and some of its ecosystem components. 
-
-![architecture](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/6bff693a-1acd-4891-be5a-64f6754ee1f8)
-
-Prometheus extracts metrics directly from instrumented jobs, or through intermediate push gateways for short-lived jobs. Store all collected samples locally and run rules on that data to aggregate and record new time series from existing data or generate alerts. You can visualize the collected data using Grafana or any other API consumer.
-
-## Getting Started
-
-### Create a virtual machine in the Azure cloud
+# Create a virtual machine in the Azure cloud
 
 Follow this step-by-step guide to create a virtual machine in the Azure cloud.
 
@@ -74,7 +39,7 @@ Review all the configuration details you specified so far. If everything is corr
 Access and manage virtual machines
 After completing the virtual machine creation process, you can access and manage your virtual machine from the Azure portal. In Virtual Machine Services, click the newly created virtual machine to view details, perform management tasks, and remotely access the virtual machine. 
 
-### Create a virtual machine (EC2 instance) in the AWS cloud
+# Create a virtual machine (EC2 instance) in the AWS cloud
 
 Follow the step-by-step guide below to create a virtual machine (EC2 instance) in the AWS cloud.
 
@@ -119,7 +84,7 @@ Review all the configuration details you specified so far. If everything is corr
 Access and manage virtual machines
 Once the EC2 instance creation process is complete, it can be accessed and managed through the AWS Management Console. Find your newly created instance in the EC2 dashboard and remotely access the virtual machine using the specified public IP address or DNS name. 
 
-### Install Prometheus
+# Install Prometheus
 
  To begin with, we will create a dedicated Linux user or system account for Prometheus. This practice provides two significant benefits:
   * It is a security measure that limits the impact of any security incidents associated with the service.
@@ -168,7 +133,7 @@ To ensure that the Prometheus binary is executable, execute the following comman
 prometheus --version
 ```
 
-### Install Node Exporter
+# Install Node Exporter
 
 Next, we're going to set up and configured Node Exporter to collect Linux system metrics like CPU load and disk I/O. Node Exporter will expose these as Prometheus-style metrics. Since the installation process is very similar, I'm not going to cover as deep as Prometheus.
 
@@ -639,7 +604,7 @@ sudo systemctl status prometheus
  ```
 
  
-### Alertmanager Slack Channel Integration
+# Alertmanager Slack Channel Integration
  
  Alertmanager can be configured to send emails, can be integrated with PagerDuty and many other services. For this demo, I will integrate Alertmanager with Slack. We're going to create a slack channel where all the alerts will be sent.
 
@@ -753,14 +718,9 @@ echo "jenkins_job_duration_seconds 11.87" | curl --data-binary @- http://localho
 ![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
 
  
-## Metrics
-### What are metrics
- 
-In layperson terms, metrics are numeric measurements. Time series means that changes are recorded over time. What users want to measure differs from application to application. For a web server it might be request times, for a database it might be number of active connections or number of active queries etc.
 
-Metrics play an important role in understanding why your application is working in a certain way. Let's assume you are running a web application and find that the application is slow. You will need some information to find out what is happening with your application. For example the application can become slow when the number of requests are high. If you have the request count metric you can spot the reason and increase the number of servers to handle the load.
 
- ###
+ # configure a data source before importing a template in Grafana
  Before importing a template into Grafana, it is best to have a data source configured so that dashboards can work properly. Here are the steps to configure a data source before importing a template in Grafana:
  
  * Step 1 : Log in to your Grafana instance and go to the main dashboard.
@@ -772,7 +732,7 @@ Metrics play an important role in understanding why your application is working 
 * Step 7 : Once you have configured the data source, click on the "Save & Test" button to check the connection to the data source. Grafana will perform a connection test and display a success or failure message.
 * Step 8 : If the connection test is successful, you can now proceed with importing the template.
 
-### importing the template 
+# importing the template 
  After configuring the data source in Grafana, you can proceed with importing a template. Here's how you can import a template after configuring the data source:
  * Step 1 : Log in to your Grafana instance and go to the main dashboard.
  * Step 2 : In the left sidebar, click on the "+" icon and select "Import" from the dropdown menu. This will take you to the import page.
@@ -782,55 +742,3 @@ Metrics play an important role in understanding why your application is working 
 * Step 6 : Scroll down to the bottom of the page and choose the data source you configured earlier from the dropdown menu. This will associate the template with the selected data source "Prometheus".
 * Step 7 : Customize any other import options as needed, such as choosing a new dashboard title.
 * Step 8 : Finally, click on the "Import" button to import the template. If the import is successful, you will see a success message, and the imported dashboard or folder will be available in your Grafana instance.
-
-
-
-
-
- 
-### Metric name and help template system
-
-
-Metric name recommendation: `{name}_{metric}_{aggregation}_{unit}`
-
-Help recommendation: `Azure metrics for {metric} with aggregation {aggregation} as {unit}`
-
-
-| Template        | Description                                                                               |
-|-----------------|-------------------------------------------------------------------------------------------|
-| `{name}`        | Name of template specified by request parameter `name`                                    |
-| `{type}`        | The ResourceType or MetricNamespace specified in the request (not applicable to all APIs) |
-| `{metric}`      | Name of Azure monitor metric                                                              |
-| `{dimension}`   | Dimension value of Azure monitor metric (if dimension is used)                            |
-| `{unit}`        | Unit name of Azure monitor metric (eg `count`, `percent`, ...)                            |
-| `{aggregation}` | Aggregation of Azure monitor metric (eg `total`, `average`)                               |
-| `{interval}`    | Interval of requested Azure monitor metric                                                |
-| `{timespan}`    | Timespan of requested Azure monitor metric                                                |
-
-## Rows Metrics
-
-| Rows metrics                             | Description                                                                     |
-|------------------------------------------|---------------------------------------------------------------------------------|
-| `Quick CPU / Mem / Disk`                 | `Monitoring CPU, memory, and disk usage`                                        |   
-| `Basic CPU / Mem / Net / Disk`           | `Displays basic metrics for CPU, memory, network, and disk usage`               |
-| `CPU / Memory / Net / Disk(8 panels)`    | `CPU, Memory, and Network performance metrics`                                  |
-| `Memory Meminfo`                         | `Displays system memory statistics (free, buffer, cache, etc.) `                |
-| `Memory Vmstat`                          | `displays the time differences between servers and clients  `                   |              
-| `System Processes`                       | `System processes running on the server `                                       |             
-| ` System Misc`                           | ` Miscellaneous system-related  `                                               |             
-| ` Hardware Misc`                         | ` Miscellaneous Hardware-related  `                                             |              
-| ` Storage Disk`                          | `  metrics related to storage disks such as disk space utilization `            |             
-| ` Storage Filesystem`                    | ` shows metrics related to the file systems  `                                  |              
-| ` Network Traffic`                       | ` various network metrics  `                                                    |             
-| ` Network Sockstat`                      | ` statistics of network sockets opened by the kernel  `                         |              
-| ` Network Netstat`                       | ` (Established, waiting, current, etc) network connections on the machine  `    |       
-| ` Node Exporter`                         | ` (Established, waiting, current, etc) network connections on the machine  `    |   
-
-
-![2023-05-03_163336](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/b81f5279-7182-4ac5-96b8-68aea5a3dbe7)
-
- 
- ## Contributing
- If you have ideas, suggestions, or bug reports, contributions are welcome at any time!
- 
- Change.

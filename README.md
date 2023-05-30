@@ -33,6 +33,10 @@ Prometheus extracts metrics directly from instrumented jobs, or through intermed
 
 ## Getting Started
 
+## Prerequisites
+Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
+
+
 ### Create a virtual machine in the Azure cloud
 
 Follow this step-by-step guide to create a virtual machine in the Azure cloud.

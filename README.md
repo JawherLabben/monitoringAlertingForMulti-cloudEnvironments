@@ -15,16 +15,16 @@ In this phase of the project, we will create two virtual machines in the Azure c
 * Support for Azure, AWS, and GCP cloud providers
 
 ## Components
-The Prometheus ecosystem consists of several components, many of which are optional.
+The multi-cloud monitoring solution consists of the following key components:
 
+** Monitoring Agent: Collects and sends metrics data from monitored cloud resources to the centralized monitoring system.
 
-Main Prometheus server to fetch and store time series data
-Client library for instrumenting application code
-A push gateway that supports short-lived jobs
-Professional exporter for services such as HAProxy, StatsD, Graphite.
-Alert manager for handling alerts
-Various support tools
-Most Prometheus components are written in Go, so they can be easily built and deployed as static binaries.
+** Centralized Monitoring System: Stores and analyzes metrics data, providing real-time visualization and customizable dashboards.
+
+*** Alert and Notification System: Issues custom alerts based on predefined thresholds or abnormal conditions, supporting various notification channels. In this project, the notification channel used is Slack, providing real-time alert notifications to the designated Slack channel.
+** Visualization and Reporting: Leverages Grafana for data visualization, enabling stakeholders to monitor resource utilization and track performance trends.
+
+** Configuration Management: Centralized interface for managing monitoring agent configurations, alert rules, and visualization settings.
 
 ## Prometheus Architecture
 

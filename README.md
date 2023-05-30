@@ -42,37 +42,37 @@ Prometheus extracts metrics directly from instrumented jobs, or through intermed
 Follow this step-by-step guide to create a virtual machine in the Azure cloud.
 
 
-step 1:
+-Step 1:
 Sign in to the Azure portal
 Go to the Azure portal website (portal.azure.com) and sign in using your Azure account credentials.
 
-Step 2:
+-Step 2:
 Go to Virtual Machine Services.
 After logging in, click Virtual Machines in the left sidebar or use the search bar at the top to find and select Virtual Machine Services. 
 
-Step 3:
+-Step 3:
 Click "Add" to create a new virtual machine
 On the Virtual Machines page, click the Add button to start the process of creating a new virtual machine.
 
-Step 4:
+-Step 4:
 Choose a base image
 In the "Basic" tab, you need to enter some initial information. First, select a subscription, resource group, and region in which to create the virtual machine.
 
 Then select the base image you want for your virtual machine. Azure offers a variety of pre-configured images for different operating systems and applications. You can choose an image from the Azure Marketplace or use your own custom image.
 
-Step 5:
+-Step 5:
 Provide instance details
 In this step you need to specify the details of your virtual machine. B. Administrator Account Name, Username, and Password. Also, choose the appropriate size for your virtual machine based on your required CPU, memory, and disk configuration.
 
-Step 6:
+-Step 6:
 Network configuration
 Azure offers various networking options for virtual machines. You can choose to create a new virtual network or use an existing virtual network. Configure network settings according to your needs, such as subnets, public IP addresses, and network security groups. 
 
-Step 7:
+-Step 7:
 Configure management options
 This step allows you to configure additional management options for your virtual machine. B. Monitoring, diagnostics, startup diagnostics, and availability records (if applicable). Adjust these settings as needed for your specific needs.
 
-Step 8:
+-Step 8:
 confirm and create
 Review all the configuration details you specified so far. If everything is correct, click the Create button to start the virtual machine creation process. Azure will start provisioning and deploying virtual machines based on your specifications. Step 9:
 Access and manage virtual machines
@@ -763,8 +763,28 @@ echo "jenkins_job_duration_seconds 11.87" | curl --data-binary @- http://localho
 In layperson terms, metrics are numeric measurements. Time series means that changes are recorded over time. What users want to measure differs from application to application. For a web server it might be request times, for a database it might be number of active connections or number of active queries etc.
 
 Metrics play an important role in understanding why your application is working in a certain way. Let's assume you are running a web application and find that the application is slow. You will need some information to find out what is happening with your application. For example the application can become slow when the number of requests are high. If you have the request count metric you can spot the reason and increase the number of servers to handle the load.
+
+ ###
+ Before importing a template into Grafana, it is best to have a data source configured so that dashboards can work properly. Here are the steps to configure a data source before importing a template in Grafana:
  
- 
+ Log in to your Grafana instance and go to the main dashboard.
+
+Log in to your Grafana instance and go to the main dashboard.
+
+From the settings dropdown menu, select "Data Sources". You will be directed to the data sources page.
+
+On the data sources page, click on the "Add data source" button to start configuring a new data source.
+
+Choose the type of data source you want to configure, for example, "InfluxDB", "Prometheus", "Elasticsearch", etc. Select the one that matches your use case.
+
+Configure the specific details of the data source based on the selected type. This may include information such as the data source URL, authentication credentials, query parameters, etc. Refer to the Grafana or specific data source documentation for detailed instructions on configuration.
+
+Once you have configured the data source, click on the "Save & Test" button to check the connection to the data source. Grafana will perform a connection test and display a success or failure message.
+
+If the connection test is successful, you can now proceed with importing the template. Follow the steps I mentioned earlier to import the template into Grafana.
+
+
+
 ### Metric name and help template system
 
 
@@ -772,7 +792,6 @@ Metric name recommendation: `{name}_{metric}_{aggregation}_{unit}`
 
 Help recommendation: `Azure metrics for {metric} with aggregation {aggregation} as {unit}`
 
-Following templates are available:
 
 | Template        | Description                                                                               |
 |-----------------|-------------------------------------------------------------------------------------------|

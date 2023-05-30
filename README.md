@@ -17,14 +17,14 @@ In this phase of the project, we will create two virtual machines in the Azure c
 ## Components
 The multi-cloud monitoring solution consists of the following key components:
 
-** Monitoring Agent: Collects and sends metrics data from monitored cloud resources to the centralized monitoring system.
+* Monitoring Agent: Collects and sends metrics data from monitored cloud resources to the centralized monitoring system.
 
-** Centralized Monitoring System: Stores and analyzes metrics data, providing real-time visualization and customizable dashboards.
+* Centralized Monitoring System: Stores and analyzes metrics data, providing real-time visualization and customizable dashboards.
 
-*** Alert and Notification System: Issues custom alerts based on predefined thresholds or abnormal conditions, supporting various notification channels. In this project, the notification channel used is Slack, providing real-time alert notifications to the designated Slack channel.
-** Visualization and Reporting: Leverages Grafana for data visualization, enabling stakeholders to monitor resource utilization and track performance trends.
+* Alert and Notification System: Issues custom alerts based on predefined thresholds or abnormal conditions, supporting various notification channels. In this project, the notification channel used is Slack, providing real-time alert notifications to the designated Slack channel.
+* Visualization and Reporting: Leverages Grafana for data visualization, enabling stakeholders to monitor resource utilization and track performance trends.
 
-** Configuration Management: Centralized interface for managing monitoring agent configurations, alert rules, and visualization settings.
+* Configuration Management: Centralized interface for managing monitoring agent configurations, alert rules, and visualization settings.
 
 ## Prometheus Architecture
 

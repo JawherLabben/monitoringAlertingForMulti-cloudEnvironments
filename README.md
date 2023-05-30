@@ -33,7 +33,7 @@ Prometheus extracts metrics directly from instrumented jobs, or through intermed
 
 ## Getting Started
 
-## Prerequisites
+### Prerequisites
 Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
 
 

@@ -25,6 +25,15 @@ Various support tools
 Most Prometheus components are written in Go, so they can be easily built and deployed as static binaries.
 
 ## Prometheus Architecture
+
+The monitoring component of this solution is based on the Prometheus architecture, a powerful open-source monitoring and alerting toolkit. Prometheus follows a pull-based model, where it scrapes metrics data from the monitored targets at regular intervals. The key components of the Prometheus architecture are:
+
+* Prometheus Server: Responsible for collecting and storing metrics data from the monitored targets.
+* Metrics Exporters: Agents or plugins that expose metrics in a format that Prometheus can scrape.
+* Targets: The machines or services that are monitored and provide metrics to Prometheus.
+* Alertmanager: Handles alert notifications based on predefined alerting rules.
+* Grafana: A popular data visualization tool used to create dashboards and visualize metrics collected by Prometheus.
+
 This diagram shows the architecture of Prometheus and some of its ecosystem components. 
 
 ![architecture](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/6bff693a-1acd-4891-be5a-64f6754ee1f8)

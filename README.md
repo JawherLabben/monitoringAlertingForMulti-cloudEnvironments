@@ -59,8 +59,6 @@ Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
 * Install Prometheus
 * Install Node Exporter
 
-![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
-
 
 * Install Grafana on Ubuntu 20.04
 * Configure a data source before importing a template in Grafana

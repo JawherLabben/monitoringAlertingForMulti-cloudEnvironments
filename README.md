@@ -71,48 +71,7 @@ Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
  
  If you want to follow the step-by-step installation instructions, you can refer to the detailed guide provided in the 'Installation_Guide.md' file.
  
-### Metric name and help template system
 
-
-Metric name recommendation: `{name}_{metric}_{aggregation}_{unit}`
-
-Help recommendation: `Azure metrics for {metric} with aggregation {aggregation} as {unit}`
-
-
-| Template        | Description                                                                               |
-|-----------------|-------------------------------------------------------------------------------------------|
-| `{name}`        | Name of template specified by request parameter `name`                                    |
-| `{type}`        | The ResourceType or MetricNamespace specified in the request (not applicable to all APIs) |
-| `{metric}`      | Name of Azure monitor metric                                                              |
-| `{dimension}`   | Dimension value of Azure monitor metric (if dimension is used)                            |
-| `{unit}`        | Unit name of Azure monitor metric (eg `count`, `percent`, ...)                            |
-| `{aggregation}` | Aggregation of Azure monitor metric (eg `total`, `average`)                               |
-| `{interval}`    | Interval of requested Azure monitor metric                                                |
-| `{timespan}`    | Timespan of requested Azure monitor metric                                                |
-
-### Rows Metrics
-
-| Rows metrics                             | Description                                                                     |
-|------------------------------------------|---------------------------------------------------------------------------------|
-| `Quick CPU / Mem / Disk`                 | `Monitoring CPU, memory, and disk usage`                                        |   
-| `Basic CPU / Mem / Net / Disk`           | `Displays basic metrics for CPU, memory, network, and disk usage`               |
-| `CPU / Memory / Net / Disk(8 panels)`    | `CPU, Memory, and Network performance metrics`                                  |
-| `Memory Meminfo`                         | `Displays system memory statistics (free, buffer, cache, etc.) `                |
-| `Memory Vmstat`                          | `displays the time differences between servers and clients  `                   |              
-| `System Processes`                       | `System processes running on the server `                                       |             
-| ` System Misc`                           | ` Miscellaneous system-related  `                                               |             
-| ` Hardware Misc`                         | ` Miscellaneous Hardware-related  `                                             |              
-| ` Storage Disk`                          | `  metrics related to storage disks such as disk space utilization `            |             
-| ` Storage Filesystem`                    | ` shows metrics related to the file systems  `                                  |              
-| ` Network Traffic`                       | ` various network metrics  `                                                    |             
-| ` Network Sockstat`                      | ` statistics of network sockets opened by the kernel  `                         |              
-| ` Network Netstat`                       | ` (Established, waiting, current, etc) network connections on the machine  `    |       
-| ` Node Exporter`                         | ` (Established, waiting, current, etc) network connections on the machine  `    |   
-
-
-![2023-05-03_163336](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/b81f5279-7182-4ac5-96b8-68aea5a3dbe7)
-
- 
  ## Contributing
  If you have ideas, suggestions, or bug reports, contributions are welcome at any time!
 

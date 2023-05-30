@@ -1,22 +1,16 @@
 # Monitoring and Alerting For Multi-cloud Environments
 
-### The project's goal
+### Description
 
 This project aims to implement a multi-cloud monitoring solution for monitoring and managing cloud resources across multiple platforms, such as Azure and AWS. A centralized solution will collect and analyze monitoring data, issue personalized alerts, and display real-time metrics. The goal is to enhance transparency, control, and efficiency in managing cloud resources, while optimizing performance and cost utilization. 
 
 This phase involves creating two virtual machines in the Azure cloud. The first machine will be utilized for monitoring other machines, while the other machine in the Azure and AWS clouds will serve as targets as part of a multi-cloud monitoring setup
 
 ### Features
-The main features of Prometheus are:
-
-
-A multidimensional data model containing time series data identified by metric names and key-value pairs
-PromQL, a flexible query language that takes advantage of this dimension
-Does not rely on distributed storage. Individual server nodes are autonomous
-Time series collection is done using a pull model over HTTP.
-Time-series push is supported via intermediate gateways
-Targets are discovered by service discovery or static configuration
-Support for multiple charts and dashboard modes  
+* Centralized monitoring of cloud resources across multiple platforms
+* Real-time metrics and personalized alerts
+* Cost optimization for efficient resource utilization
+* Support for Azure, AWS, and GCP cloud providers
 
 ## Components
 The Prometheus ecosystem consists of several components, many of which are optional.

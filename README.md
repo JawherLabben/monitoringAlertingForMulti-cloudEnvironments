@@ -42,37 +42,37 @@ Prometheus extracts metrics directly from instrumented jobs, or through intermed
 Follow this step-by-step guide to create a virtual machine in the Azure cloud.
 
 
--Step 1:
+* Step 1:
 Sign in to the Azure portal
 Go to the Azure portal website (portal.azure.com) and sign in using your Azure account credentials.
 
--Step 2:
+* Step 2:
 Go to Virtual Machine Services.
 After logging in, click Virtual Machines in the left sidebar or use the search bar at the top to find and select Virtual Machine Services. 
 
--Step 3:
+* Step 3:
 Click "Add" to create a new virtual machine
 On the Virtual Machines page, click the Add button to start the process of creating a new virtual machine.
 
--Step 4:
+* Step 4:
 Choose a base image
 In the "Basic" tab, you need to enter some initial information. First, select a subscription, resource group, and region in which to create the virtual machine.
 
 Then select the base image you want for your virtual machine. Azure offers a variety of pre-configured images for different operating systems and applications. You can choose an image from the Azure Marketplace or use your own custom image.
 
--Step 5:
+* Step 5:
 Provide instance details
 In this step you need to specify the details of your virtual machine. B. Administrator Account Name, Username, and Password. Also, choose the appropriate size for your virtual machine based on your required CPU, memory, and disk configuration.
 
--Step 6:
+* Step 6:
 Network configuration
 Azure offers various networking options for virtual machines. You can choose to create a new virtual network or use an existing virtual network. Configure network settings according to your needs, such as subnets, public IP addresses, and network security groups. 
 
--Step 7:
+* Step 7:
 Configure management options
 This step allows you to configure additional management options for your virtual machine. B. Monitoring, diagnostics, startup diagnostics, and availability records (if applicable). Adjust these settings as needed for your specific needs.
 
--Step 8:
+* Step 8:
 confirm and create
 Review all the configuration details you specified so far. If everything is correct, click the Create button to start the virtual machine creation process. Azure will start provisioning and deploying virtual machines based on your specifications. Step 9:
 Access and manage virtual machines
@@ -83,43 +83,43 @@ After completing the virtual machine creation process, you can access and manage
 Follow the step-by-step guide below to create a virtual machine (EC2 instance) in the AWS cloud.
 
 
-step 1:
+* Step 1:
 Sign in to the AWS Management Console
 Go to the AWS Management Console website (console.aws.amazon.com) and sign in using your AWS account credentials.
 
-Step 2:
+* Step 2:
 Go to EC2 services
 After signing in, you will see the dashboard of the AWS Management Console. Find and select the "EC2" service using the search bar above, or search for it in the "Computing" section.
 
-Step 3:
+* Step 3:
 Click Start Instance to create a new EC2 instance.
 From the EC2 Dashboard, click the Launch Instance button to start the process of creating a new virtual machine.
 
-Step 4:
+* Step 4:
 Choose an Amazon Machine Image (AMI).
 In the Select Amazon Machine Image (AMI) step, you need to select the base image you want for your virtual machine. AWS offers a wide range of pre-configured images for various operating systems and applications. You can choose from the AWS Marketplace or use one of the AMIs provided by AWS. 
 
-Step 5:
+* Step 5:
 Please select an instance type
 In this step, you need to select an instance type for your virtual machine. AWS offers a variety of instance types with different combinations of CPU, memory, storage, and network capacity. Choose the instance type that best suits your needs.
 
-Step 6:
+* Step 6:
 Configure instance details
 In this step you can configure additional details for your instance. You can specify the number of instances to launch, configure network settings, assign security groups (firewall rules), and configure storage options. Adjust these settings according to your specific needs.
 
-Step 7:
+* Step 7:
 Add storage
 Configure virtual machine storage options. You can choose the size and type of storage. B. An Amazon Elastic Block Store (EBS) volume. Adjust the settings according to your storage needs.
 
-Step 8:
+* Step 8:
 configure security groups
 This step requires configuring security group settings for the virtual machine. Security groups act as virtual firewalls that control incoming and outgoing traffic. Define rules to allow access to virtual machines based on your security needs.
 
-Step 9:
+* Step 9:
 Reviews and referrals
 Review all the configuration details you specified so far. If everything is correct, click the Start button to start the EC2 instance creation process. AWS will prompt you to select or create an SSH key pair to use for secure remote access to your virtual machine.  
 
-Step 10:
+* Step 10:
 Access and manage virtual machines
 Once the EC2 instance creation process is complete, it can be accessed and managed through the AWS Management Console. Find your newly created instance in the EC2 dashboard and remotely access the virtual machine using the specified public IP address or DNS name. 
 
@@ -767,24 +767,31 @@ Metrics play an important role in understanding why your application is working 
  ###
  Before importing a template into Grafana, it is best to have a data source configured so that dashboards can work properly. Here are the steps to configure a data source before importing a template in Grafana:
  
- Log in to your Grafana instance and go to the main dashboard.
+ * Step 1 : Log in to your Grafana instance and go to the main dashboard.
+* Step 2 : Log in to your Grafana instance and go to the main dashboard.
+* Step 3 : From the settings dropdown menu, select "Data Sources". You will be directed to the data sources page.
+* Step 4 : On the data sources page, click on the "Add data source" button to start configuring a new data source.
+* Step 5 : Choose the type of data source "Prometheus".
+* Step 6: Configure specific data source details (database name, etc.)
+* Step 7 : Once you have configured the data source, click on the "Save & Test" button to check the connection to the data source. Grafana will perform a connection test and display a success or failure message.
+* Step 8 : If the connection test is successful, you can now proceed with importing the template.
 
-Log in to your Grafana instance and go to the main dashboard.
-
-From the settings dropdown menu, select "Data Sources". You will be directed to the data sources page.
-
-On the data sources page, click on the "Add data source" button to start configuring a new data source.
-
-Choose the type of data source you want to configure, for example, "InfluxDB", "Prometheus", "Elasticsearch", etc. Select the one that matches your use case.
-
-Configure the specific details of the data source based on the selected type. This may include information such as the data source URL, authentication credentials, query parameters, etc. Refer to the Grafana or specific data source documentation for detailed instructions on configuration.
-
-Once you have configured the data source, click on the "Save & Test" button to check the connection to the data source. Grafana will perform a connection test and display a success or failure message.
-
-If the connection test is successful, you can now proceed with importing the template. Follow the steps I mentioned earlier to import the template into Grafana.
+### importing the template 
+ After configuring the data source in Grafana, you can proceed with importing a template. Here's how you can import a template after configuring the data source:
+ * Step 1 : Log in to your Grafana instance and go to the main dashboard.
+ * Step 2 : In the left sidebar, click on the "+" icon and select "Import" from the dropdown menu. This will take you to the import page.
+ * Step 3 : On the import page, you will see options to import a dashboard.
+ * Step 4 : In the import section, you can either upload a JSON file containing the template or paste the JSON code directly into the editor. If you are going to use our json file, just download the file and import it.
+* Step 5 : Once the JSON is loaded, Grafana will display a preview of the template settings and configurations. Review the settings.
+* Step 6 : Scroll down to the bottom of the page and choose the data source you configured earlier from the dropdown menu. This will associate the template with the selected data source "Prometheus".
+* Step 7 : Customize any other import options as needed, such as choosing a new dashboard title.
+* Step 8 : Finally, click on the "Import" button to import the template. If the import is successful, you will see a success message, and the imported dashboard or folder will be available in your Grafana instance.
 
 
 
+
+
+ 
 ### Metric name and help template system
 
 

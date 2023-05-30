@@ -47,16 +47,18 @@ Prometheus extracts metrics directly from instrumented jobs, or through intermed
 ### Prerequisites
 Cloud provider accounts (Azure, AWS, GCP) with appropriate access credentials
 
+### Installation and Configuration
 
 * Create a virtual machine in the Azure cloud
 * Create a virtual machine (EC2 instance) in the AWS cloud
 * Install Prometheus
 * Install Node Exporter
 * Install Grafana on Ubuntu 20.04
+* Configure a data source before importing a template in Grafana
+* Importing the template 
 * Install Pushgateway Prometheus on Ubuntu 20.04
 * Install Alertmanager on Ubuntu 20.04
 * Alertmanager Slack Channel Integration
- 
 ![1](https://github.com/JawherLabben/monitoringAlertingForMulti-cloudEnvironments/assets/75523733/76531ad0-c973-4894-a4e8-9c5869203481)
 
  
@@ -67,10 +69,10 @@ In layperson terms, metrics are numeric measurements. Time series means that cha
 
 Metrics play an important role in understanding why your application is working in a certain way. Let's assume you are running a web application and find that the application is slow. You will need some information to find out what is happening with your application. For example the application can become slow when the number of requests are high. If you have the request count metric you can spot the reason and increase the number of servers to handle the load.
 
- ###
+ ### configure a data source before importing a template in Grafana
  Before importing a template into Grafana, it is best to have a data source configured so that dashboards can work properly. Here are the steps to configure a data source before importing a template in Grafana:
  
- * Step 1 : Log in to your Grafana instance and go to the main dashboard.
+* Step 1 : Log in to your Grafana instance and go to the main dashboard.
 * Step 2 : Log in to your Grafana instance and go to the main dashboard.
 * Step 3 : From the settings dropdown menu, select "Data Sources". You will be directed to the data sources page.
 * Step 4 : On the data sources page, click on the "Add data source" button to start configuring a new data source.
@@ -89,9 +91,6 @@ Metrics play an important role in understanding why your application is working 
 * Step 6 : Scroll down to the bottom of the page and choose the data source you configured earlier from the dropdown menu. This will associate the template with the selected data source "Prometheus".
 * Step 7 : Customize any other import options as needed, such as choosing a new dashboard title.
 * Step 8 : Finally, click on the "Import" button to import the template. If the import is successful, you will see a success message, and the imported dashboard or folder will be available in your Grafana instance.
-
-
-
 
 
  
